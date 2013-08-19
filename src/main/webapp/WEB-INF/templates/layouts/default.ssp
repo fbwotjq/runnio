@@ -1,0 +1,159 @@
+<%@ val content:String %>
+<html lang="en">
+      <head>
+
+        <!-- meta -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+
+        <!-- favicon -->
+        <link rel="shortcut icon" href="/img/favicon.png" type="image/png"/>
+
+        <!-- page title -->
+        <title>Run_Me</title>
+
+        <!-- css -->
+        <link href="/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/colorbox.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/bootstrap-responsive.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/vendor/circle.hover.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/vendor/fullcalendar.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/vendor/sourcerer.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/vendor/prettify.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/vendor/jquery.mcustomscrollbar.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/vendor/jquery.gritter.css" type="text/css" rel="stylesheet"/>
+        <link href="/css/main.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/media.css" rel="stylesheet" type="text/css"/>
+
+        <!-- fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'/>{head}
+
+      </head>
+
+      <body>
+
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- gotop -->
+        <div id="gotop"></div>
+
+        <!-- top navigation bar -->
+        <span class="accent-1"></span>
+
+        <div class="navbar navbar-fixed-top">
+          <a href="/">
+            <div id="logo"></div>
+          </a>
+
+
+          <!-- header navigation -->
+          <nav class="nav">
+            <ul>
+              <li>
+                <a href="/upload">Upload a Jar</a>
+              </li>
+              <li>
+                <a href="/run-spec">Run a Test</a>
+              </li>
+            </ul>
+          </nav>
+
+          <!-- right part header icons -->
+          <ul class="user-nav">
+            <li>
+              <a href="#" data-placement="bottom" class="icon-status tip" title="Check stats"></a>
+            </li>
+            <li>
+              <a href="#" data-placement="bottom" class="icon-user tip" title="User area"></a>
+            </li>
+            <li>
+              <a href="#" data-placement="bottom" class="icon-dialog tip" title="Some information"></a>
+            </li>
+            <li>
+              <a href="index.html" data-placement="bottom" class="icon-logout tip" title="Logout"></a>
+            </li>
+          </ul>
+
+        </div>
+
+        <div class="sidebar-nav">
+
+          <!-- sidebar navigation -->
+          <nav id="navigation">
+            <ul>
+              <li><a href="/">RUN_ME_ Main Page</a></li>
+              <li>
+                <a href="javascript:;">Maven Configuration<span></span></a>
+                <ol>
+                  <li><a href="/maven-config-success">View Current Maven Location</a></li>
+                  <li><a href="/maven-change">Change Maven Location</a></li>
+                </ol>
+              </li>
+              <li>
+                <a href="javascript:;">Jar Configuration<span></span></a>
+                <ol>
+                  <li><a href="/upload">Upload & install a Jar</a></li>
+                </ol>
+              </li>
+              <li>
+                <a href="javascript:;">Cucumber<span></span></a>
+                <ol>
+                  <li><a href="/config-success" >View Config</a></li>
+                  <li><a href="/run-spec">Run Spec</a></li>
+                  <li><a class="inline cboxElement" href="#inline_content">Create a Spec</a></li>
+                </ol>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="container">
+            <%= unescape(content) %>
+            <div style="display:none">
+               <iframe id="inline_content" src="/index.html" style="width:830px; height:530px;">
+               </iframe>
+            </div>
+        </div>
+
+        <footer class="vcard" role="contentinfo">
+
+        </footer>
+
+        <script src="/js/vendor/jquery-1.9.0.min.js"></script>
+        <script src="/js/vendor/jquery-ui-1.10.2.custom.min.js"></script>
+        <script src="/js/vendor/jquery.colorbox.js"></script>
+        <script src="/js/vendor/bootstrap.min.js"></script>
+        <script src="/js/vendor/tweenLite/TweenMax.min.js"></script>
+        <script src="/js/vendor/jquery.sparkline.min.js"></script>
+        <script src="/js/vendor/prettify.js"></script>
+        <script src="/js/vendor/excanvas.min.js"></script>
+        <script src="/js/vendor/jquery.flot.js"></script>
+        <script src="/js/vendor/jquery.flot.resize.js"></script>
+        <script src="/js/vendor/jquery.flot.tooltip.js"></script>
+        <script src="/js/vendor/fullcalendar.js"></script>
+        <script src="/js/vendor/beautiful-data.js"></script>
+        <script src="/js/vendor/ckeditor/ckeditor.js"></script>
+        <script src="/js/vendor/jquery.mcustomscrollbar.concat.min.js"></script>
+        <script src="/js/vendor/jquery.gritter.min.js"></script>
+        <script src="/js/vendor/jquery.validate.js"></script>
+        <script src="/js/main.js"></script>
+        <script src="/js/page/dashboard.js"></script>
+        <script src="/js/page/forms_validation.js"></script>
+        <script>
+
+        			$(document).ready(function(){
+        				//Examples of how to assign the Colorbox event to elements
+        				$(".inline").colorbox({inline:true, width:"80%", height:"60%"});
+        				//Example of preserving a JavaScript event for inline calls.
+        				$("#click").click(function(){
+        					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+        					return false;
+        				});
+        			});
+
+                </script>
+      </body>
+
+    </html>

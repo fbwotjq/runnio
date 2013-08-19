@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Editor</title>
+    <style type="text/css" media="screen">
+        body {
+            overflow: hidden;
+        }
+
+        .editor {
+            position: absolute;
+            width: 800px;
+            height: 500px;
+        }
+
+        #en {
+            top: 0;
+        }
+
+        #tr {
+            top: 300px;
+        }
+    </style>
+</head>
+<body>
+
+<pre class="editor" id="en">Feature: Feature
+  Background: hello
+
+  Scenario Outline: A scenario
+    # A comment
+    @tag @tagz
+    Given I have 4 cukes in my "big" and 'Given' Given belly
+      """
+      A doc string with Given
+      """
+    And a table:
+      | with | some |
+      | rows |      |
+</pre>
+
+
+<script src="http://ajaxorg.github.com/ace/build/src/ace.js"></script>
+<script src="http://ajaxorg.github.com/ace/build/src/mode-coffee.js"></script>
+<script src="http://ajaxorg.github.com/ace/build/src/theme-solarized_dark.js"></script>
+<script src="editor/js/mode-gherkin-en.js"></script>
+<script>
+    function aceify(lang) {
+        var editor = ace.edit(lang);
+        editor.setTheme("ace/theme/solarized_dark");
+        var GherkinMode = require('ace/mode/gherkin-' + lang).Mode;
+        editor.getSession().setMode(new GherkinMode());
+        editor.getSession().setTabSize(2);
+    }
+
+    window.onload = function() {
+        aceify('en');
+        aceify('tr');
+    };
+</script>
+
+</body>
+</html>
