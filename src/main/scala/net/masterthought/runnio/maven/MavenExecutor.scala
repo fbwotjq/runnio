@@ -41,10 +41,10 @@ object MavenExecutor {
       invoker.setMavenHome(new File(MavenConfigManager.mavenConfig.mavenLocation))
       val result = invoker.execute(request)
       if (result.getExitCode == 0){
-        "success " + outputHandler.getLinesAsString
+        "success <br />" + outputHandler.getLinesAsString
       }
       else {
-        "failure with exit code: " + result.getExitCode  + " " + outputHandler.getLinesAsString
+        "failure with exit code: " + result.getExitCode  + "<br />" + outputHandler.getLinesAsString
       }
     } catch {
       case mie: MavenInvocationException => "MAVEN FAILURE!!! : " + mie.getMessage

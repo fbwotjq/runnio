@@ -10,7 +10,7 @@
         <link rel="shortcut icon" href="/img/favicon.png" type="image/png"/>
 
         <!-- page title -->
-        <title>Run_Me</title>
+        <title>Runnio::Cucumber Web Runner</title>
 
         <!-- css -->
         <link href="/css/bootstrap.css" rel="stylesheet" type="text/css"/>

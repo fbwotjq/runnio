@@ -1,6 +1,7 @@
 package net.masterthought
 
 package object runnio {
+
   def tuplify(x: String) = {
     if (x.indexOf("=") > 0) {
       val y = x.split("=")
@@ -10,5 +11,7 @@ package object runnio {
   }
 
   def splitByComma(x: String) = if (x.indexOf(",") > 0) x.split(",").toList else List[String](x)
+
+
 
 }
