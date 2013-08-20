@@ -1,11 +1,16 @@
 package net.masterthought.runnio
 
-import cucumber.CucumberContentFactory
+import cucumber.{CucumberContentFactory}
 import maven.{MavenConfigManager, MavenContentFactory, MavenExecutor, JarUtil}
 import org.scalatra._
 import javax.servlet.annotation.MultipartConfig
 import servlet.{FileItem, FileUploadSupport}
 import org.slf4j.LoggerFactory
+import java.io.File
+import net.masterthought.cucumber.ReportBuilder
+import scala.collection.JavaConverters._
+import org.apache.commons.io.FileUtils
+
 
 @MultipartConfig(maxFileSize = 1024 * 1024 * 1024)
 class RunnioServlet extends RunnioStack with FileUploadSupport {
@@ -75,7 +80,7 @@ class RunnioServlet extends RunnioStack with FileUploadSupport {
       tag, MavenExecutor.listOfProperties
     )
     contentType = "text/html"
-    ssp("/main","content" -> CucumberContentFactory.executionResult(tag,string))
+    ssp("/main","content" -> CucumberContentFactory.executionResult(tag,string,generateWithDefaultPaths))
   }
 
 
@@ -109,6 +114,25 @@ class RunnioServlet extends RunnioStack with FileUploadSupport {
     Console.out.println("System Properties: " + properties)
     MavenExecutor.listOfProperties = splitByComma(properties).map(tuplify(_))
     redirect("/specs/" + params.get("tag").get)
+  }
+
+  var defaultReportsLocation = "."
+  var defaultJsonLocation = "target/cucumber.json"
+
+  def generateWithDefaultPaths : String = generate(defaultReportsLocation, defaultJsonLocation)
+
+  def generate(reportsLocation:String, jsonLocation : String) :String = {
+    val rd = new File(reportsLocation)
+
+    if (!rd.exists()) {
+      rd.mkdirs();
+    }
+
+    val list = new scala.collection.mutable.ListBuffer[String]
+    list += jsonLocation
+    val reportBuilder = new ReportBuilder(list.asJava, rd, "","Local","cucumber-jvm",false,false,true,false,false,"",false)
+    reportBuilder.generateReports()
+    """file://""" + rd.getAbsolutePath.replace(".","/") + "feature-overview.html"
   }
 
 }

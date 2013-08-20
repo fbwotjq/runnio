@@ -13,6 +13,6 @@ class CustomOutputHandler extends InvocationOutputHandler{
     lines = line :: lines
   }
 
-  def getLinesAsString : String =  lines.mkString("<br/>")
+  def getLinesAsString : String =  lines.reverse.mkString("<br/>")
 
 }

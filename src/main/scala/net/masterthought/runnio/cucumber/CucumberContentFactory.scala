@@ -8,20 +8,20 @@ object CucumberContentFactory {
     private val successLabel : String = """<span class="label label-success">Success</span>"""
     private val failureLabel : String = """<span class="label label-important">Failure!</span>"""
 
-    def executionResult(tag:String,result:String) = {
+    def executionResult(tag:String,result:String, reportLocation : String) = {
       val resultSpan = if (result.startsWith("success")) successLabel else failureLabel
 
       """<div class="toggle-content">
         <div class="whead">
-            <strong>Cucumber Execution: """ +
-              tag +
-            """</strong>
+            <strong>Cucumber Execution: for tag: '""" +
+        tag +
+        """'  - Reports:<a href="""" + reportLocation + """ ">Reports</a></strong>
           </div>
           <div class="box holder">
-            """ + resultSpan + """
+        """ + resultSpan + """
             <p class="padd-15">
               <code>
-                """ + result + """
+                           """ + result + """
               </code>
             </p>
           </div>

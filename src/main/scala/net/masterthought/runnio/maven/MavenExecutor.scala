@@ -21,10 +21,6 @@ object MavenExecutor {
 
   var listOfProperties: List[(String, String)] = List()
 
-  def build(tag:String):String = {
-    build("net.masterthought", "cucumber-project", "1.0",tag, MavenExecutor.listOfProperties)
-  }
-
   def build(groupId: String, artifactId: String, version: String, tag:String, properties:List[(String,String)]): String = {
     val outputHandler: CustomOutputHandler = new CustomOutputHandler()
     createPomFileFor(groupId, artifactId, version)
@@ -78,7 +74,7 @@ object MavenExecutor {
 
   def getCucumberProperties(tag:String, props:List[(String,String)]): Properties = {
     val properties = new Properties
-    properties.setProperty("cucumber.options", "--format json-pretty --tags " + tag)
+    properties.setProperty("cucumber.options", "--format json:target/cucumber.json --tags " + tag)
     for (tuple <- props){
       properties.setProperty(tuple._1, tuple._2)
     }

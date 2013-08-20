@@ -41,6 +41,7 @@ object RunnioBuild extends Build {
       resolvers += Classpaths.typesafeReleases,
       resolvers += Classpaths.typesafeSnapshots,
       resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository",
+      resolvers += "repo.bodar.com" at "http://repo.bodar.com",
       libraryDependencies ++= Seq(
         "org.scalatra" %% "scalatra" % ScalatraVersion,
         "org.scalatra" %% "scalatra-scalate" % ScalatraVersion,
@@ -53,6 +54,7 @@ object RunnioBuild extends Build {
         "org.apache.velocity" % "velocity" % "1.7",
         "ch.qos.logback" % "logback-classic" % "1.0.6" % "runtime",
         "com.google.code.gson" % "gson" % "2.2.4",
+        "net.masterthought" % "cucumber-reporting" % "0.0.21",
         "junit" % "junit" % "4.9" % "test",
         "info.cukes" % "cucumber-core" % "1.1.1" % "test",
         "info.cukes" % "cucumber-junit" % "1.1.1" % "test",
