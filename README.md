@@ -10,3 +10,5 @@ $ ./sbt
 ```
 
 If `browse` doesn't launch your browser, manually open [http://localhost:9999/](http://localhost:9999/) in your browser.
+
+A sample of how Runnio works can be found at our [http://runnio.j.layershift.co.uk/](Jelastic) site.
