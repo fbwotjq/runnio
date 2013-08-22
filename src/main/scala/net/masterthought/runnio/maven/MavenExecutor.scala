@@ -13,7 +13,7 @@ import net.masterthought.runnio.CucumberRunnerConfig
 
 object MavenExecutor {
 
-  val logger =  LoggerFactory.getLogger(getClass)
+  val logger = LoggerFactory.getLogger(getClass)
 
   val destination = "temp_pom.xml"
 
@@ -21,13 +21,13 @@ object MavenExecutor {
 
   var listOfProperties: List[(String, String)] = List()
 
-  def build(groupId: String, artifactId: String, version: String, tag:String, properties:List[(String,String)]): String = {
+  def build(groupId: String, artifactId: String, version: String, tag: String, properties: List[(String, String)]): String = {
     val outputHandler: CustomOutputHandler = new CustomOutputHandler()
     createPomFileFor(groupId, artifactId, version)
     val request: InvocationRequest = new DefaultInvocationRequest
     prepareCleanInstall(request, outputHandler, tag, properties)
     logger.info("Executing tag: " + tag)
-    execute(request,outputHandler)
+    execute(request, outputHandler)
   }
 
 
@@ -36,32 +36,32 @@ object MavenExecutor {
     try {
       invoker.setMavenHome(new File(MavenConfigManager.mavenConfig.mavenLocation))
       val result = invoker.execute(request)
-      if (result.getExitCode == 0){
+      if (result.getExitCode == 0) {
         "success <br />" + outputHandler.getLinesAsString
       }
       else {
-        "failure with exit code: " + result.getExitCode  + "<br />" + outputHandler.getLinesAsString
+        "failure with exit code: " + result.getExitCode + "<br />" + outputHandler.getLinesAsString
       }
     } catch {
       case mie: MavenInvocationException => "MAVEN FAILURE!!! : " + mie.getMessage
     }
   }
 
-  def installJar {
+  def installJar(testJar: Boolean) {
     /*
         TODO if jar name ends with test install as test-jar otherwise as normal jar.
      */
     val outputHandler: CustomOutputHandler = new CustomOutputHandler()
-    val request:InvocationRequest = new DefaultInvocationRequest
+    val request: InvocationRequest = new DefaultInvocationRequest
     val scalaList = new scala.collection.mutable.ListBuffer[String]
     scalaList += "org.apache.maven.plugins:maven-install-plugin:2.3.1:install-file"
     request.setGoals(scalaList.asJava)
-    request.setProperties(getPomInstallationProperties)
+    request.setProperties(getPomInstallationProperties(testJar))
     request.setOutputHandler(outputHandler)
-    execute(request,outputHandler)
+    execute(request, outputHandler)
   }
 
-  def prepareCleanInstall(request: InvocationRequest, systemOutHandler: CustomOutputHandler, tag:String, properties:List[(String,String)]) {
+  def prepareCleanInstall(request: InvocationRequest, systemOutHandler: CustomOutputHandler, tag: String, properties: List[(String, String)]) {
     request.setPomFile(new File(destination))
     val scalaList = new scala.collection.mutable.ListBuffer[String]
     scalaList += "clean install"
@@ -72,23 +72,32 @@ object MavenExecutor {
     Console.println(">>>>>" + props.toString)
   }
 
-  def getCucumberProperties(tag:String, props:List[(String,String)]): Properties = {
+  def getCucumberProperties(tag: String, props: List[(String, String)]): Properties = {
     val properties = new Properties
     properties.setProperty("cucumber.options", "--format json:target/cucumber.json --tags " + tag)
-    for (tuple <- props){
+    for (tuple <- props) {
       properties.setProperty(tuple._1, tuple._2)
     }
     properties
   }
 
-  def getPomInstallationProperties : Properties = {
+  def getPomInstallationProperties(testJar: Boolean): Properties = {
     val properties = new Properties
-    properties.setProperty("file",jarName)
-    properties.setProperty("groupId",CucumberRunnerConfig.cucumberRunner.groupId)
-    properties.setProperty("artifactId",CucumberRunnerConfig.cucumberRunner.artifactId)
-    properties.setProperty("version",CucumberRunnerConfig.cucumberRunner.version)
-    properties.setProperty("classifier","tests")
-    properties.setProperty("packaging","test-jar")
+    properties.setProperty("file", jarName)
+    properties.setProperty("groupId", CucumberRunnerConfig.cucumberRunner.groupId)
+    properties.setProperty("artifactId", CucumberRunnerConfig.cucumberRunner.artifactId)
+    properties.setProperty("version", CucumberRunnerConfig.cucumberRunner.version)
+    if (testJar) {
+      properties.setProperty("classifier", "tests")
+      logger.info("intalling as a test jar")
+    }
+    if (testJar) {
+      logger.info("intalling as a test jar")
+      properties.setProperty("packaging", "test-jar")
+    } else {
+      logger.info("intalling as a normal jar")
+      properties.setProperty("packaging", "jar")
+    }
     properties
   }
 

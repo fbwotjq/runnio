@@ -29,9 +29,9 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>net.masterthought</groupId>
-                                    <artifactId>cucumber-project</artifactId>
-                                    <version>1.0</version>
+                                    <groupId>com.visa.eu</groupId>
+                                    <artifactId>VMeShakedown</artifactId>
+                                    <version>0.0.1-SNAPSHOT</version>
                                     <overWrite>true</overWrite>
                                     <type>test-jar</type>
                                     <outputDirectory>
@@ -49,9 +49,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>net.masterthought</groupId>
-            <artifactId>cucumber-project</artifactId>
-            <version>1.0</version>
+            <groupId>com.visa.eu</groupId>
+            <artifactId>VMeShakedown</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
             <type>test-jar</type>
         </dependency>
     </dependencies>

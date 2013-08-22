@@ -15,7 +15,7 @@ object CucumberContentFactory {
         <div class="whead">
             <strong>Cucumber Execution: for tag: '""" +
         tag +
-        """'  - Reports:<a href="""" + reportLocation + """ ">Reports</a></strong>
+        """'  - Reports can be found at: <i><a href="""" + reportLocation + """ ">""" + reportLocation + """</a></i></strong>
           </div>
           <div class="box holder">
         """ + resultSpan + """
@@ -31,7 +31,18 @@ object CucumberContentFactory {
         </div>"""
     }
 
-   def executeSpec = {
+   def executeSpec(cucumberConfigNotSet:Boolean) : String = {
+     if (cucumberConfigNotSet){
+       return """
+            <div class="alert alert-block alert-error fade in">
+        										<button type="button" class="close" data-dismiss="alert">&times;</button>
+        										<h4 class="alert-heading">You haven't uploaded the test project!</h4>
+        										<p>You need to upload a test project.</p>
+        										<p><a class="btn btn-danger" href="/upload">Upload</a> <a class="btn" href="/">Or go to homepage</a></p>
+        									</div>
+       """
+     }
+
      """
        <div class="toggle-content">
               <div class="whead">

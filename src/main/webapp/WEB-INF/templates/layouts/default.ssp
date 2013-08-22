@@ -94,13 +94,13 @@
               <li>
                 <a href="javascript:;">Jar Configuration<span></span></a>
                 <ol>
+                  <li><a href="/config-success" >View Config</a></li>
                   <li><a href="/upload">Upload & install a Jar</a></li>
                 </ol>
               </li>
               <li>
                 <a href="javascript:;">Cucumber<span></span></a>
                 <ol>
-                  <li><a href="/config-success" >View Config</a></li>
                   <li><a href="/run-spec">Run Spec</a></li>
                   <li><a class="inline cboxElement" href="#inline_content">Create a Spec</a></li>
                 </ol>

@@ -17,6 +17,8 @@ class RunnioServlet extends RunnioStack with FileUploadSupport {
 
   val logger = LoggerFactory.getLogger(getClass)
 
+  val jarUtil = new JarUtil()
+
   get("/") {
     contentType = "text/html"
     ssp("/main", "content" -> ContentFactory.dashboard)
@@ -32,8 +34,15 @@ class RunnioServlet extends RunnioStack with FileUploadSupport {
     val version = params.getOrElse("version", halt(404, <h1>
       No version
     </h1>))
-    CucumberRunnerConfig.setTo(group, artifact, version)
-    MavenExecutor.installJar
+
+    val testJar = params.get("testJar") != None
+
+    if(testJar) {
+      logger.info("It is a Test Jar!")
+      CucumberRunnerConfig.setTo(group, artifact, version)
+    }
+
+    MavenExecutor.installJar(testJar)
     redirect("/config-success")
   }
 
@@ -45,9 +54,9 @@ class RunnioServlet extends RunnioStack with FileUploadSupport {
   post("/upload") {
     val item: FileItem = fileParams.get("document").getOrElse(halt(500))
     contentType = "text/html"
-    if (new JarUtil().uploadJar(item)) {
+    if (jarUtil.uploadJar(item)) {
       MavenExecutor.jarName = item.name
-      ssp("/main", "content" -> JarContentFactory.successfulUpload(item))
+      ssp("/main", "content" -> JarContentFactory.successfulUpload(item,jarUtil.pom.groupId,jarUtil.pom.artifactId, jarUtil.pom.version))
     }
     else {
       ssp("/main", "content" -> "<i>not a jar</i><br/><a href=\"/upload\">Try again!</a>")
@@ -86,7 +95,7 @@ class RunnioServlet extends RunnioStack with FileUploadSupport {
 
   get("/run-spec") {
     contentType = "text/html"
-    ssp("/main","content" -> CucumberContentFactory.executeSpec)
+    ssp("/main","content" -> CucumberContentFactory.executeSpec(CucumberRunnerConfig.isNotSet))
   }
 
   get("/maven-change") {
