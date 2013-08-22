@@ -63,16 +63,7 @@
           <!-- right part header icons -->
           <ul class="user-nav">
             <li>
-              <a href="#" data-placement="bottom" class="icon-status tip" title="Check stats"></a>
-            </li>
-            <li>
-              <a href="#" data-placement="bottom" class="icon-user tip" title="User area"></a>
-            </li>
-            <li>
-              <a href="#" data-placement="bottom" class="icon-dialog tip" title="Some information"></a>
-            </li>
-            <li>
-              <a href="index.html" data-placement="bottom" class="icon-logout tip" title="Logout"></a>
+              <a href="#" data-placement="bottom" class="icon-dialog tip" title="Runnio information"></a>
             </li>
           </ul>
 
@@ -136,7 +127,6 @@
         <script src="/js/vendor/beautiful-data.js"></script>
         <script src="/js/vendor/ckeditor/ckeditor.js"></script>
         <script src="/js/vendor/jquery.mcustomscrollbar.concat.min.js"></script>
-        <script src="/js/vendor/jquery.gritter.min.js"></script>
         <script src="/js/vendor/jquery.validate.js"></script>
         <script src="/js/main.js"></script>
         <script src="/js/page/dashboard.js"></script>

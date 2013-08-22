@@ -52,7 +52,6 @@
             <groupId>com.visa.eu</groupId>
             <artifactId>VMeShakedown</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <type>test-jar</type>
         </dependency>
     </dependencies>
 </project>

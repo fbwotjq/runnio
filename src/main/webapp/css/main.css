@@ -157,6 +157,7 @@ textarea {
 .navbar .user-nav li a.icon-user { background: url(../img/light/users2.png) no-repeat 50% 50%; }
 .navbar .user-nav li a.icon-dialog { background: url(../img/light/laptop.png) no-repeat 50% 50%; }
 .navbar .user-nav li a.icon-logout { background: url(../img/light/runningMan.png) no-repeat 50% 50%; }
+.navbar .user-nav li a.icon-cuke { background: url(../img/light/speech2.png) no-repeat 50% 50%; }
 
 .icon-bullet-1 { background: url(../img/__tmp/slider/bullets.png) no-repeat 0 0; }
 .icon-bullet-2 { background: url(../img/__tmp/slider/bullets.png) no-repeat 0 -29px; }

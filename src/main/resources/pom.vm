@@ -52,7 +52,7 @@
             <groupId>$groupId</groupId>
             <artifactId>$artifactId</artifactId>
             <version>$version</version>
-            <type>test-jar</type>
+##            <type>test-jar</type>
         </dependency>
     </dependencies>
 </project>
