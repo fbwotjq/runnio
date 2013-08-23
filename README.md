@@ -51,9 +51,13 @@ and run `mvn clean install`. That will produce a *-test.jar (test-jar) which now
 Then, you need to install the jar by uploading it to Runnio. Runnio can identify your pom configuration (groupId, artifactId, version) and whether it is a test-jar or not by parsing the jar itself.
 After that, you will also be able to install any additional jars which are pre-requisites for the execution of your specs. If no test-jar is specified then Run Spec is deactivated.
 
-Finally, you can run your specs by specifying the Cucumber tags you want.
-At the end you will get a full report from the maven execution as well as a reference to the location of the Cucumber Reports.
+### Specs Execution ###
 
+Finally, you can run your specs by specifying the Cucumber tags you want, along with any environment properties.
+At the end you will get a full report derived from the maven execution as well as a reference to the location of the generated MasterThought Cucumber Reports.
+
+
+##### Note: #####
 - The creation of cucumber files on the fly is still in progress...
 
 &copy;2013 - [MasterThought.net](http://www.masterthought.net)
