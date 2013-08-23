@@ -28,7 +28,8 @@ Since runnio is using your maven installation if it is not as per the default co
 ### Jar configuration ###
 
 First you need to package your tests by using the following plugin within your pom.xml
-```    <build>
+```
+       <build>
            <plugins>
                <plugin>
                    <artifactId>maven-jar-plugin</artifactId>
