@@ -1,5 +1,10 @@
 # runnio #
 
+The purpose of runnio is dual:
+
+1. to allow the standalone execution of specifications without actually checking out the code (e.g. for demo purposes, or as an assistance to manual testers)
+2. to enable the creation and execution of cucumber specifications on the fly.
+
 ## Build & Run ##
 
 ```sh
