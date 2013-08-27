@@ -25,16 +25,9 @@ class RunnioServlet extends RunnioStack with FileUploadSupport {
   }
 
   post("/config-set") {
-    val group = params.getOrElse("groupId", halt(404, <h1>
-      No groupId
-    </h1>))
-    val artifact = params.getOrElse("artifactId", halt(404, <h1>
-      No artifactId
-    </h1>))
-    val version = params.getOrElse("version", halt(404, <h1>
-      No version
-    </h1>))
-
+    val group = params.getOrElse("groupId", halt(404, <h1>No groupId</h1>))
+    val artifact = params.getOrElse("artifactId", halt(404, <h1>No artifactId</h1>))
+    val version = params.getOrElse("version", halt(404, <h1>No version</h1>))
     val testJar = params.get("testJar") != None
 
     if(testJar) {

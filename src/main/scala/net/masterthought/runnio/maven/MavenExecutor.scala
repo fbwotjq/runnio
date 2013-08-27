@@ -48,9 +48,6 @@ object MavenExecutor {
   }
 
   def installJar(testJar: Boolean) {
-    /*
-        TODO if jar name ends with test install as test-jar otherwise as normal jar.
-     */
     val outputHandler: CustomOutputHandler = new CustomOutputHandler()
     val request: InvocationRequest = new DefaultInvocationRequest
     val scalaList = new scala.collection.mutable.ListBuffer[String]
