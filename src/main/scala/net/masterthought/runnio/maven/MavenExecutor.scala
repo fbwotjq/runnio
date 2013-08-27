@@ -86,11 +86,8 @@ object MavenExecutor {
     properties.setProperty("version", CucumberRunnerConfig.cucumberRunner.version)
     if (testJar) {
       properties.setProperty("classifier", "tests")
-      logger.info("intalling as a test jar")
-    }
-    if (testJar) {
-      logger.info("intalling as a test jar")
       properties.setProperty("packaging", "test-jar")
+      logger.info("intalling as a test jar")
     } else {
       logger.info("intalling as a normal jar")
       properties.setProperty("packaging", "jar")
