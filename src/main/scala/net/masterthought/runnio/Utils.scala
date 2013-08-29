@@ -8,7 +8,9 @@ object Utils {
 
   def copyFileToDefaultLocation(item:FileItem) : Boolean = {
     println("ContentType was: "  + item.getContentType.getOrElse("Unknown"))
-    if (item.getContentType.getOrElse("").equals("application/java-archive")){
+    if (item.getContentType.getOrElse("").equals("application/java-archive")
+        || item.getContentType.getOrElse("").equals("application/x-zip-compressed")
+    ){
       FileUtils.writeByteArrayToFile(new File(item.name),item.get())
       return true
     } else false
