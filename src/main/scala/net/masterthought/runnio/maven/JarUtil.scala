@@ -39,7 +39,7 @@ class JarUtil {
 
   private def findInPom(tagName:String, jarFile: JarFile, jarEntry: JarEntry):String = {
     var lines = IO.readLines(jarFile.getInputStream(jarEntry)).toList
-    lines = lines.filter(_.contains(tagName))
+    lines = lines.filter(_.contains("<" + tagName + ">"))
     if (lines.size == 0) throw new RuntimeException("Tag: " + tagName + " wasn't found.")
     val result = lines.get(0).replaceAll("<" + tagName + ">","").replaceAll("</" +tagName + ">","").trim
     Console.out.println(tagName + " is: " + result)
