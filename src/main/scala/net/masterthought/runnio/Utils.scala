@@ -10,6 +10,7 @@ object Utils {
     println("ContentType was: "  + item.getContentType.getOrElse("Unknown"))
     if (item.getContentType.getOrElse("").equals("application/java-archive")
         || item.getContentType.getOrElse("").equals("application/x-zip-compressed")
+        || item.getContentType.getOrElse("").equals("application/octet-stream")
     ){
       FileUtils.writeByteArrayToFile(new File(item.name),item.get())
       return true
